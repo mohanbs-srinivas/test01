@@ -2,10 +2,8 @@ import requests
 import os
 from datetime import datetime, timedelta
 
-# Organization or username
 ORG = "CanarysPlayground"
 
-# GitHub Token
 TOKEN = os.getenv("GITHUB_TOKEN")
 if not TOKEN:
     raise ValueError("Missing GITHUB_TOKEN. Please set it in the environment variables.")
@@ -58,9 +56,14 @@ for repo in repos:
     if check_inactivity(repo["name"]):
         inactive_repos.append(repo["name"])
 
-if inactive_repos:
-    print("\nInactive Repositories (no commits in any branch in 6 months):")
-    for repo in inactive_repos:
-        print(f"- {repo}")
-else:
-    print("All repositories are active.")
+# Export results to a file
+output_file = "inactive_repos.txt"
+with open(output_file, "w") as f:
+    if inactive_repos:
+        f.write("Inactive Repositories (no commits in any branch in 6 months):\n")
+        for repo in inactive_repos:
+            f.write(f"- {repo}\n")
+        print(f"\nInactive repositories have been saved to {output_file}.")
+    else:
+        f.write("All repositories are active.\n")
+        print(f"\nAll repositories are active. Results have been saved to {output_file}.")
