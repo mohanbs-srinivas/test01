@@ -27,9 +27,9 @@ jobs:
       run: |
         python check_inactivity1.py
 
-    - name: Upload Inactive Repositories File
-      uses: actions/upload-artifact@v3
-      with:
-        name: inactive-repos
-        path: inactive_repos.txt
+ #   - name: Upload Inactive Repositories File
+ #     uses: actions/upload-artifact@v3
+ #     with:
+ #       name: inactive-repos
+ #       path: inactive_repos.txt
 
