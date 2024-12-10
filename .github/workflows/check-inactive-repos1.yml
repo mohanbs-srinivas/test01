@@ -30,6 +30,6 @@ jobs:
     - name: Upload Inactive Repositories File
       uses: actions/upload-artifact@v3
       with:
-        name: inactive-repos1
-        path: inactive_repos1.txt
+        name: inactive-repos
+        path: inactive_repos.txt
 
