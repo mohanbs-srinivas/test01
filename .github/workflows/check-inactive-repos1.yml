@@ -1,8 +1,8 @@
 name: Check Inactive Repositories1
 
 on:
-  schedule:
-    - cron: '0 0 * * 0'
+ # schedule:
+ #   - cron: '0 0 * * 0'
   workflow_dispatch: 
 
 jobs:
@@ -26,3 +26,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         python check_inactivity1.py
+
+    - name: Upload Inactive Repositories File
+      uses: actions/upload-artifact@v3
+      with:
+        name: inactive-repos
+        path: inactive_repos.txt
+
