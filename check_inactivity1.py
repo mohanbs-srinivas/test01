@@ -56,14 +56,9 @@ for repo in repos:
     if check_inactivity(repo["name"]):
         inactive_repos.append(repo["name"])
 
-# Export results to a file
-output_file = "inactive_repos.txt"
-with open(output_file, "w") as f:
-    if inactive_repos:
-        f.write("Inactive Repositories (no commits in any branch in 6 months):\n")
-        for repo in inactive_repos:
-            f.write(f"- {repo}\n")
-        print(f"\nInactive repositories have been saved to {output_file}.")
-    else:
-        f.write("All repositories are active.\n")
-        print(f"\nAll repositories are active. Results have been saved to {output_file}.")
+if inactive_repos:
+    print("\nInactive Repositories (no commits in any branch in 6 months):")
+    for repo in inactive_repos:
+        print(f"- {repo}")
+else:
+    print("All repositories are active.")
