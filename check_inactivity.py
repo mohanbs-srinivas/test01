@@ -10,7 +10,7 @@ if not TOKEN:
     raise ValueError("Missing GITHUB_TOKEN")
 
 headers = {"Authorization": f"token {TOKEN}"}
-six_months_ago = datetime.now() - timedelta(days=30)
+six_months_ago = datetime.now() - timedelta(days=180)
 
 def fetch_repos():
     repos_url = f"https://api.github.com/orgs/{ORG}/repos?per_page=100"
