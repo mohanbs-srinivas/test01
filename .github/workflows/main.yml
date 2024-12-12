@@ -1,4 +1,4 @@
-name: Check Inactive Repositories
+name: Check Inactive Repositories-java
 
 on:
   workflow_dispatch:
