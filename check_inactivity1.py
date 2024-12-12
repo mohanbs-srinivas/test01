@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 ORG = "CanarysPlayground"
 
-TOKEN = "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"
+TOKEN = os.getenv("GITHUB_TOKEN")
 if not TOKEN:
     raise ValueError("Missing GITHUB_TOKEN. Please set it in the environment variables.")
 
