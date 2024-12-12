@@ -3,8 +3,8 @@ import os
 from datetime import datetime, timedelta
 
 ORG = "CanarysPlayground"
+TOKEN = "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"
 
-TOKEN = os.getenv("GITHUB_TOKEN")
 if not TOKEN:
     raise ValueError("Missing GITHUB_TOKEN. Please set it in the environment variables.")
 
@@ -19,11 +19,8 @@ def fetch_repos():
         response = requests.get(repos_url, headers=headers)
         response.raise_for_status()
         repos.extend(response.json())
-        
-        # Check if there is a next page in the response links
         repos_url = response.links.get('next', {}).get('url', None)
     return repos
-
 
 def fetch_branches(repo_name):
     """Fetch all branches for a given repository."""
