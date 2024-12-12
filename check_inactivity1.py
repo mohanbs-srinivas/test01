@@ -13,14 +13,17 @@ six_months_ago = datetime.now() - timedelta(days=180)
 
 def fetch_repos():
     """Fetch all repositories for the organization or user."""
-    repos_url = f"https://api.github.com/orgs/{ORG}/repos?per_page=100"
+    repos_url = f"https://api.github.com/orgs/{ORG}/repos?per_page=100&page=1"
     repos = []
     while repos_url:
         response = requests.get(repos_url, headers=headers)
         response.raise_for_status()
         repos.extend(response.json())
-        repos_url = response.links.get('next', {}).get('url')
+        
+        # Check if there is a next page in the response links
+        repos_url = response.links.get('next', {}).get('url', None)
     return repos
+
 
 def fetch_branches(repo_name):
     """Fetch all branches for a given repository."""
