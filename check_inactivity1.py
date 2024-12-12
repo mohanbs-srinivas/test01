@@ -3,7 +3,8 @@ import os
 from datetime import datetime, timedelta
 
 ORG = "CanarysPlayground"
-TOKEN = "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"
+TOKEN = os.getenv("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")
+
 
 if not TOKEN:
     raise ValueError("Missing GITHUB_TOKEN. Please set it in the environment variables.")
